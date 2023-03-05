@@ -1,15 +1,9 @@
-from aiogram import Bot, types
-from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
-import os
-
-bot = Bot(token=os.getenv('TOKET'))
-dp = Dispatcher(bot)
+from create_bot import dp
 
 
-@dp.message_handler()
-async def echo_send():
-    pass
+async def on_startup(_):
+    print('Бот вышел в онлайн')
 
 
-executor.start_polling(dp, skip_updates=True)
+executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
